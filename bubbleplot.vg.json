@@ -1,0 +1,74 @@
+{
+    "$schema" : "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": {"text":"Income vs Poverty Over Time in Malaysia", "font": "Arial", "fontSize": 16},
+    "data": {
+        "url": "https://raw.githubusercontent.com/xuenhan/FIT3179_Homework10/main/hh_income_state_normalized.csv"
+    },
+    "params": [
+        {
+            "name": "selected_state",
+            "value": "Selangor",
+            "bind": {
+                "input": "select",
+                "options": [
+                    "Johor", "Kedah", "Kelantan", "Selangor", "Pulau Pinang", "Perak", "Pahang", "Terengganu", "Negeri Sembilan", "Melaka", 
+                    "Perlis", "Sabah", "Sarawak", "W.P. Kuala Lumpur", "W.P. Labuan", "W.P. Putrajaya"
+                ],
+                "name": "Select State: "
+            }
+        }
+    ],
+    "transform": [
+        {"filter": "datum.state == selected_state"},
+        {
+            "lookup": "year",
+            "from": {
+                "data": {
+                    "url": "https://raw.githubusercontent.com/xuenhan/FIT3179_Homework10/main/hh_poverty_state_normalized.csv"
+                },
+                "key": "year",
+                "fields": ["poverty_absolute"]
+            }
+        }
+    ],
+    "layer": [
+       { 
+        "mark": {"type": "line", "color": "steelblue"},
+        "encoding": {
+            "x": {"field": "year", "type": "ordinal", "title": "Year"},
+            "y": {"field": "income_mean", "type": "quantitative"}
+        }
+    },
+    {
+        "mark": {"type": "line", "color": "#537D5D"},
+        "encoding": {
+            "x": {"field": "year", "type": "ordinal"},
+            "y": {"field": "poverty_absolute", "type": "quantitative", "title": "Scaled Income and Poverty Rate"}
+        }   
+    },
+    {
+        "mark": {"type": "point", "color": "steelblue", "size": 80, "opacity": 0},
+        "encoding": {
+            "x": {"field": "year", "type": "ordinal"},
+            "y": {"field": "income_mean", "type": "quantitative"},
+            "tooltip": [
+                {"field": "year", "type": "ordinal", "title": "Year"},
+                {"field": "income_mean", "type": "quantitative", "title": "Income (RM)", "format": ".2f"}
+            ]
+        }
+    },
+    {
+        "mark": {"type": "point", "color": "#537D5D", "size": 80, "opacity": 0},
+        "encoding": {
+            "x": {"field": "year", "type": "ordinal"},
+            "y": {"field": "poverty_absolute", "type": "quantitative"},
+            "tooltip": [
+                {"field": "year", "type": "ordinal", "title": "Year"},
+                {"field": "poverty_absolute", "type": "quantitative", "title": "Poverty Rate (%)", "format": ".2f"}
+            ]
+        }
+    }
+    ]
+}

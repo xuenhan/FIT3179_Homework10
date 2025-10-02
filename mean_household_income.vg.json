@@ -1,0 +1,104 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 400,
+  "title": {"text":"Malaysia Mean Income by State", "font": "Arial", "fontSize": 16},
+  "padding": {"left": 50, "right": 0, "top": 0, "bottom": 20},
+  "projection": {"type": "mercator"},
+  "view": {"stroke": "transparent",  "fill": "#d0e5f3"},
+  "params": [
+    {
+      "name": "indicator",
+      "value": "income_mean",
+      "bind": {
+        "input": "select", 
+        "options": ["income_mean", "expenditure_mean", "poverty"],
+        "labels": ["Mean Income", "Mean Expenditure", "Poverty Rate"],
+        "name": "Select Indicator: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://xuenhan.github.io/FIT3179_Homework9/output.json",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_1"}
+      },
+      "mark": {"type": "geoshape", "stroke": "#cccccc", "strokeWidth": 0.5, "fill": null}
+    },
+    {
+      "data": {
+        "url": "https://xuenhan.github.io/FIT3179_Homework9/output.json",
+        "format": {"type": "topojson", "feature": "my (1)"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "https://xuenhan.github.io/FIT3179_Homework9/hies_state_normalized.csv"
+            },
+            "key": "state",
+            "fields": ["income_mean", "expenditure_mean", "poverty"]
+          }
+        },
+        {
+          "fold": ["income_mean", "expenditure_mean", "poverty"],
+          "as": ["indicator_field", "indicator_value"]
+        },
+        {
+          "filter": "datum.indicator_field == indicator"
+        },
+         {
+          "calculate": "indicator == 'income_mean' ? 'Mean Income (RM)' : indicator == 'expenditure_mean' ? 'Mean Expenditure (RM)' : 'Poverty Rate (%)'",
+          "as": "tooltipLabel"
+        },
+        {
+          "calculate": "format(datum.indicator_value, '.2f')",
+          "as": "tooltipValue"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "#aaaaaa", "strokeWidth": 0.5},
+      "encoding": {
+        "color": {
+          "field": "indicator_value",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "type": "linear",
+            "range": ["#F0F1C5", "#D2D0A0", "#9EBC8A", "#73946B", "#537D5D"]
+          },
+        "legend": {
+          "orient": "right",
+          "offset": 10,
+          "titleFontSize": 12,
+          "labelFontSize": 10,
+          "titleFontWeight": "bold",
+          "titleFont":"Sans-serif",
+          "labelFont":"Sans-serif"
+        }
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "tooltipLabel", "type": "nominal", "title": "Indicator"},
+          {"field": "tooltipValue", "type": "nominal", "title": "Value (Normalised)"}
+        ]
+      }
+    },
+     {
+      "data": {"values": [{}]},   
+      "transform": [
+        {
+          "calculate": "indicator == 'income_mean' ? 'Mean Income (RM)' : indicator == 'expenditure_mean' ? 'Mean Expenditure (RM)' : 'Poverty Rate (%)'",
+          "as": "legendTitle"
+        }
+      ],
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": "bold", "align": "left"},
+      "encoding": {
+        "x": {"value": 1010},
+        "y": {"value": -10},
+        "text": {"field": "legendTitle"}
+      }
+    }
+  ]
+}

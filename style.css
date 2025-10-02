@@ -1,0 +1,45 @@
+#chloropleth_map {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#map-container {
+  text-align: center;
+  position: relative;
+  justify-content: center;
+  margin-bottom: 100px; 
+}
+
+#chloropleth_map {
+  position: relative;
+  display: inline-block;
+}
+
+h2 {
+  margin-bottom: 50px;   /* increase space below header */
+}
+
+
+.vega-bind {
+  position: absolute;
+  bottom: -20px;   /* push below the map */
+  left: 50px;         /* align to left edge of the map */
+  text-align: left;
+}
+
+.vega-bind label {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  margin-right: 6px;
+  margin-left: 0;       /* reset since we now shift whole block */
+}
+
+/* Style the dropdown */
+.vega-bind select {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
