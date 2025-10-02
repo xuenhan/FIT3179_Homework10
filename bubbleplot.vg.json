@@ -69,6 +69,28 @@
                 {"field": "poverty_absolute", "type": "quantitative", "title": "Poverty Rate (%)", "format": ".2f"}
             ]
         }
+    },
+    {
+        "mark": {"type": "rule", "color": "gray", "strokeDash": [4, 4]},
+        "encoding" : {
+            "x": {"datum": "2020"}
+        }
+    },
+    {
+        "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 5,
+            "dy": 0,
+            "font": "Arial",
+            "fontSize": 12,
+            "color": "grey"
+        },
+        "encoding" : {
+            "x": {"datum": "2020"},
+            "y": {"datum": 0.95},
+            "text": {"value": "COVID-19 Impact"}
+        }
     }
     ]
 }
