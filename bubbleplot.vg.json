@@ -1,6 +1,6 @@
 {
     "$schema" : "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1000,
+    "width": 900,
     "height": 400,
     "title": {"text":"Income vs Poverty Over Time in Malaysia", "font": "Arial", "fontSize": 16},
     "params": [
