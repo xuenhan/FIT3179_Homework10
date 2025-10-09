@@ -2,7 +2,6 @@
     "$schema" : "https://vega.github.io/schema/vega-lite/v5.json",
     "width": 900,
     "height": 400,
-    "title": {"text":"Income vs Poverty Over Time in Malaysia", "font": "Arial", "fontSize": 16},
     "params": [
         {
             "name": "selected_state",
@@ -38,7 +37,7 @@
             "transform": [
                 {"filter": "datum.state == selected_state"}
             ],
-            "mark": {"type": "line", "color": "#537D5D"},
+            "mark": {"type": "line", "color": "#8F89C9"},
             "encoding": {
                 "x": {"field": "year", "type": "ordinal"},
                 "y": {"field": "poverty_absolute", "type": "quantitative","title": "Scaled Income and Poverty Rate"}
@@ -68,7 +67,7 @@
             "transform": [
                 {"filter": "datum.state == selected_state"}
             ],
-            "mark": {"type": "point", "color": "#537D5D", "size":80, "opacity": 0},
+            "mark": {"type": "point", "color": "#8F89C9", "size":80, "opacity": 0},
             "encoding": {
                 "x": {"field": "year", "type": "ordinal"},
                 "y": {"field": "poverty_absolute", "type": "quantitative"},

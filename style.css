@@ -17,11 +17,28 @@
 }
 
 h2 {
-  margin-bottom: 50px;   /* increase space below header */
+  text-align: center;
+  font-family: 'Bree Serif', serif;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #6C67A3;
+  margin-bottom: 30px;
 }
 
+.map-title {
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.0em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  margin-top: 20px;   /* pull it closer to the map if needed */
+  letter-spacing: 0.2px;
+}
 
 .vega-bind {
+  align-items: center;    
+  font-family: 'Sora', sans-serif;  
   position: absolute;
   bottom: -20px;   /* push below the map */
   left: 50px;         /* align to left edge of the map */
@@ -30,16 +47,30 @@ h2 {
 
 .vega-bind label {
   font-size: 16px;
-  font-family: Arial, sans-serif;
-  font-weight: 600;
-  margin-right: 6px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 300;
+  margin-right: 10px;
   margin-left: 0;       /* reset since we now shift whole block */
 }
 
 /* Style the dropdown */
 .vega-bind select {
   font-size: 14px;
+  font-family: 'Sora', sans-serif;
   padding: 4px 8px;
   border-radius: 6px;
   border: 1px solid #aaa;
 }
+
+.plot-title {
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.0em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+  margin-top: 20px;   /* pull it closer to the map if needed */
+  letter-spacing: 0.2px;
+}
+
+
