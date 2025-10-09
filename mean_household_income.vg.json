@@ -73,7 +73,7 @@
           "titleFontSize": 12,
           "labelFontSize": 10,
           "titleFontWeight": "bold",
-          "titleFont":"Sans-serif",
+          "titleFont":"Sora",
           "labelFont":"Sans-serif"
         }
         },
@@ -92,7 +92,7 @@
           "as": "legendTitle"
         }
       ],
-      "mark": {"type": "text", "fontSize": 12, "fontWeight": "bold", "align": "left"},
+      "mark": {"type": "text", "fontSize": 12, "font": "Sora", "fontWeight": "bold", "align": "left"},
       "encoding": {
         "x": {"value": 1010},
         "y": {"value": -10},
